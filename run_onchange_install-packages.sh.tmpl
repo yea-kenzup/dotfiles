@@ -33,7 +33,7 @@ sudo pacman -S --needed base-devel
 cd $HOME/.local/cache/paru
 makepkg -si
 cd $HOME/.local/cache/wsl-windows-hello
-./install.sh
+./release/install.sh
 
 {{ range .packages.arch.pacman -}}
 echo "--- Installing: {{ . }} ---"
@@ -68,7 +68,7 @@ echo "=============================================="
 echo ""
 {{ range .packages.vscode.extensions -}}
 echo "--- Installing: {{ . }} ---"
-sudo apt install {{ . | quote }}
+code --install-extension {{ . | quote }}
 {{ end -}}
 
 
