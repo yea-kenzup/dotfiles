@@ -1,0 +1,49 @@
+{
+    "$schema": "https://charm.land/crush.json",
+    "providers": {
+        "openrouter": {
+            "api_key": {{ onepasswordRead "op://Employee/OpenRouter KEY - YEA/password" "youness.elabbassi@kenzup.com" | quote}}
+        },
+        "lmstudio": {
+            "type": "openai",
+            "base_url": "http://localhost:1234/v1",
+            "api_key": "sk-youropenwebuiapikey_generatedinyourusersettings",
+            "name": "Lm Studio",
+            "models": [
+                {
+                    "id": "mistralai/magistral-small-2509",
+                    "name": "Magistral Small (2509)",
+                    "context_window": 65536,
+                    "default_max_tokens": 8192,
+                    "supports_tools": true
+                },
+                {
+                    "id": "qwen/qwen3-4b-2507",
+                    "name": "Qwen 3 4B (2507)",
+                    "context_window": 65536,
+                    "default_max_tokens": 8192,
+                    "supports_tools": true
+                },
+                {
+                    "id": "gpt-oss:20b",
+                    "name": "GPT-OSS 20B",
+                    "context_window": 65536,
+                    "default_max_tokens": 8192,
+                    "supports_tools": true
+                }
+            ]
+        }
+    },
+    "models": {
+        "large": {
+            "model": "z-ai/glm-4.6",
+            "provider": "openrouter",
+            "max_tokens": 2048
+        },
+        "small": {
+            "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+            "provider": "openrouter",
+            "max_tokens": 4096
+        }
+    }
+}
