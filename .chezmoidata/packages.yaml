@@ -34,6 +34,7 @@ packages:
       - wget
       - gpg
       - watchman
+      - charmbracelet/tap/crush
     cask:
       - iterm2
     paru:
@@ -54,6 +55,9 @@ packages:
   vscode:
     extensions:
       - ms-python.python
+      - tamasfe.even-better-toml
+      - charliermarsh.ruff
+      - johnpapa.vscode-peacock
 
 
 
