@@ -1,0 +1,59 @@
+packages:
+  darwin:
+    brew:
+      - git
+    casks:
+      - google-chrome
+  ubuntu:
+    apt:
+      - coreutils
+      - zsh
+      - git
+  arch:
+    pacman:
+      - coreutils
+      - zsh
+      - git
+      - tmux
+      - openssh
+      - neovim
+      - ripgrep
+      - zoxide
+      - base-devel 
+      - procps-ng 
+      - curl 
+      - file
+    brew:
+      - gh
+      - starship
+      - fzf
+      - bat
+      - fd
+      - jq
+      - tree
+      - wget
+      - gpg
+      - watchman
+    cask:
+      - iterm2
+    paru:
+      - visual-studio-code-bin
+      - google-chrome
+      - slack-desktop
+      - notion-app
+      - spotify
+      - discord
+      - bitwarden
+      - postman-bin
+      - alacritty
+      - brave-bin
+      - zoom
+      - obsidian
+      - telegram-desktop
+      - font-fira-code
+  vscode:
+    extensions:
+      - ms-python.python
+
+
+

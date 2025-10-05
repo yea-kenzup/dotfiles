@@ -1,0 +1,68 @@
+{{/* boolean feature tags */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $kenzup := true -}}{{/* true if this machine is a kenzup machine */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $personal := true -}}{{/* true if this machine should have personal secrets */}}
+{{- "" -}}
+
+
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname := output "scutil" "--get" "LocalHostName" | trim -}}
+{{- end -}}
+
+{{- $email := "jboubix@gmail.com" -}}
+{{- if $kenzup -}}
+{{-   $email = "youness.elabbassi@kenzup.com" -}}
+{{- end -}}
+
+
+encryption = "age"
+[age]
+{{ if eq .chezmoi.os "darwin" -}}
+identity = "/Users/apple/.ssh/age-key"
+{{ else if eq .chezmoi.os "linux" -}}
+identity = "/home/jboubix/.ssh/age-key"
+{{- end }}
+recipient = "age1rlq887frsuue6cuwy0t2g8eykejtznjwzsjjh4394pwwqthqevds37m279"
+
+
+
+
+[data]
+    ephemeral = {{ $ephemeral }}
+    email = {{ $email | quote }}
+    kenzup = {{ $kenzup }}
+    headless = {{ $headless }}
+    hostname = {{ $hostname | quote }}
+    personal = {{ $personal }}
+    osid = {{ $osID | quote }}
+    zshPlugins = [
+        "per-directory-history",
+        "vi-mode",
+        "zsh-syntax-highlighting",
+    ]
+
+
+[github]
+    refreshPeriod = "12h"
+
+[edit]
+    command = "code"
+    args = ["--wait"]
+
+[hooks.read-source-state.pre]
+    command = "/home/jboubix/.local/share/chezmoi/.install-password-manager.sh"

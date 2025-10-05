@@ -1,0 +1,147 @@
+## START GITPOD INTEGRATION
+## This section is managed by Gitpod. Any manual changes will be lost.
+Include "code_gitpod.d/config"
+
+Host *
+    StrictHostKeyChecking no
+## END GITPOD INTEGRATION
+{{ if eq .chezmoi.os "darwin" -}}
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+# {{ else if eq .chezmoi.os "linux" -}}
+#   IdentityAgent "/home/jboubix/.cache/1password/t/agent.sock"
+{{- end }}
+
+#Match host github.com exec "[ $(git config user.email) = youness.elabbassi@kenzup.com ]"
+#    IdentityFile ~/.ssh/yea-kenzup
+
+Host github.com
+    IdentityFile ~/.ssh/yea-kenzup
+  
+############# FRETERIUM #############
+Host osrm3
+   HostName 176.9.76.205
+   User root
+Host osrm2
+   HostName 142.93.164.159
+   User root
+Host cronjob-runner
+    HostName 207.154.248.107
+    User root
+Host dev-ovh
+   HostName 51.178.143.20
+   User ubuntu
+Host osrm
+    HostName 167.71.49.8
+    User root
+Host fret-gitlab-runner-1
+    HostName 167.71.38.234
+    User root
+Host srv1.freterium.com
+   HostName srv1.freterium.com
+   User youness
+   LocalForward 5431 34.76.68.52:5432
+   LocalForward 9000 127.0.0.1:8000
+
+Host events.freterium.com
+   HostName events.freterium.com
+   User root
+Host search-svc
+   HostName 161.35.17.143
+   User youness
+   IdentityFile "~/.ssh/search-svc"
+Host airbyte-freterium
+    HostName 34.140.28.121
+    User y_elabbassi
+
+
+############ KENZUP ############
+
+Host kenzup
+    HostName 54.154.40.138
+    # ForwardX11 yes
+    # LocalForward 5444 localhost:5432
+    # LocalForward 8888 localhost:8888
+    # LocalForward 8080 localhost:8080
+    # LocalForward 8090 localhost:8090
+    # LocalForward 8443 localhost:8443
+    # LocalForward 3306 fraud-mysql-db.cluster-cufgauqrwbtz.eu-west-1.rds.amazonaws.com:3306
+    # LocalForward 6379 production-godzilla-cache-group-01-001.gvxzsu.0001.euw1.cache.amazonaws.com:6379
+    # LocalForward 5438 flagsmith-production-db.cc1qxgqxgyyq.eu-west-1.rds.amazonaws.com:5432
+    User ubuntu
+    IdentityFile "~/.ssh/dev-yea.pem"
+Host kenzup-tools
+    HostName 54.228.208.36
+    User ubuntu
+    IdentityFile "~/.ssh/kenzup-tools.pem"
+    LocalForward 5002 localhost:5003
+Host kenzup-emr-dev
+    HostName 54.229.153.130
+    User hadoop
+    IdentityFile "~/.ssh/dev-yea.pem"
+Host kenzup-emr-prod
+    HostName 52.50.59.20
+    User hadoop
+    IdentityFile "~/.ssh/kenzup-tools.pem"
+Host orange-bastion
+    HostName 54.247.87.231
+    User ubuntu
+    IdentityFile "~/.ssh/orange-bastion.pem"
+Host airtime-bastion
+    HostName 54.170.152.221
+    User ubuntu
+    IdentityFile "~/.ssh/kenzup-tools.pem"
+Host kenzup-ccmh
+    HostName 3.253.173.182
+    User ubuntu
+    IdentityFile "~/.ssh/ccmh.pem"
+Host vpn-prod
+    HostName vpn.production.kenzup.com
+    User ubuntu
+    IdentityFile "~/.ssh/kenzup-tools.pem"
+    LocalForward 8000 localhost:8000
+Host cf-bastion
+    HostName 54.77.144.155
+    User ubuntu
+    IdentityFile "~/.ssh/cloudflare-bastion.pem"
+Host flagsmith-migration
+    HostName 3.252.241.4
+    User ubuntu
+    IdentityFile "~/.ssh/flagsmith-migration-ec2.pem"
+Host airbyte
+    HostName 34.247.88.80
+    User ubuntu
+    IdentityFile "~/.ssh/airbyte.pem"
+Host chat-service
+    HostName 3.250.49.233
+    User ubuntu
+    IdentityFile "~/.ssh/dev-yea.pem"
+Host kenzup-warp
+    Hostname 10.0.101.97
+    User ubuntu
+Host bastion-cih-production
+    HostName 99.81.68.218
+    User ubuntu
+    IdentityFile "~/.ssh/bastion_key.pem"
+Host bastion-cih-development
+    HostName 54.75.24.226
+    User ubuntu
+    IdentityFile "~/.ssh/bastion_key.pem"
+Host bastion-cih-staging
+    HostName 52.209.185.31
+    User ubuntu
+    IdentityFile "~/.ssh/bastion_key.pem"
+
+## END GITPOD INTEGRATION
+# --- START CODER VSCODE coder.kenzup.io ---
+Host coder-vscode.coder.kenzup.io--*
+  ConnectTimeout 0
+  LogLevel ERROR
+{{ if eq .chezmoi.os "darwin" -}}
+  ProxyCommand "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io/bin/coder-darwin-arm64" --global-config "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io" ssh --stdio --usage-app=vscode --disable-autostart --network-info-dir "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/net" --ssh-host-prefix coder-vscode.coder.kenzup.io-- %h
+{{ else if eq .chezmoi.os "linux" -}}
+  ProxyCommand "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io/bin/coder-darwin-arm64" --global-config "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io" ssh --stdio --usage-app=vscode --disable-autostart --network-info-dir "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/net" --ssh-host-prefix coder-vscode.coder.kenzup.io-- %h
+{{- end }}
+  SetEnv  CODER_SSH_SESSION_TYPE=vscode
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+# --- END CODER VSCODE coder.kenzup.io ---
