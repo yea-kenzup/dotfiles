@@ -1,0 +1,150 @@
+{
+  "LOG": false,
+  "LOG_LEVEL": "debug",
+  "CLAUDE_PATH": "",
+  "HOST": "127.0.0.1",
+  "PORT": 3456,
+  "APIKEY": "",
+  "API_TIMEOUT_MS": "600000",
+  "PROXY_URL": "",
+  "transformers": [],
+  "Providers": [
+    {
+      "name": "openrouter",
+      "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
+      "api_key": {{ onepasswordRead "op://Employee/OpenRouter KEY - YEA/password" "youness.elabbassi@kenzup.com" | quote}},
+      "models": [
+        "z-ai/glm-4.6",
+        "anthropic/claude-sonnet-4.5",
+        "deepseek/deepseek-v3.2-exp",
+        "google/gemini-2.5-flash-preview-09-2025",
+        "google/gemini-2.5-flash-lite-preview-09-2025",
+        "qwen/qwen3-vl-235b-a22b-instruct",
+        "qwen/qwen3-vl-235b-a22b-thinking",
+        "qwen/qwen3-coder-plus",
+        "openai/gpt-5-codex",
+        "x-ai/grok-4-fast",
+        "x-ai/grok-code-fast-1",
+        "google/gemini-2.5-flash-image-preview",
+        "openai/gpt-5",
+        "openai/gpt-5-mini",
+        "openai/gpt-5-nano",
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b",
+        "qwen/qwen3-coder:free"
+      ],
+      "transformer": {
+        "use": [
+          "openrouter"
+        ],
+        "google/gemini-2.5-pro-preview": {
+          "use": [
+            "openrouter"
+          ]
+        },
+        "anthropic/claude-sonnet-4": {
+          "use": [
+            "openrouter"
+          ]
+        },
+        "anthropic/claude-3.5-sonnet": {
+          "use": [
+            "openrouter"
+          ]
+        },
+        "anthropic/claude-3.7-sonnet:thinking": {
+          "use": [
+            "openrouter"
+          ]
+        }
+      }
+    },
+    {
+      "name": "lm",
+      "api_base_url": "http://localhost:1234/v1/chat/completions",
+      "api_key": "toto",
+      "models": [
+        "openai/gpt-oss-20b",
+        "gemma-3-4b-it"
+      ],
+      "transformer": {
+        "use": [
+          "openrouter"
+        ]
+      }
+    }
+  ],
+  "StatusLine": {
+    "enabled": true,
+    "currentStyle": "default",
+    "default": {
+      "modules": [
+        {
+          "type": "workDir",
+          "text": "{{workDirName}}",
+          "color": "bright_blue"
+        },
+        {
+          "type": "gitBranch",
+          "text": "{{gitBranch}}",
+          "color": "bright_green"
+        },
+        {
+          "type": "model",
+          "text": "{{model}}",
+          "color": "bright_yellow"
+        },
+        {
+          "type": "usage",
+          "text": "{{inputTokens}} → {{outputTokens}}",
+          "color": "bright_magenta"
+        }
+      ]
+    },
+    "powerline": {
+      "modules": [
+        {
+          "type": "workDir",
+          "icon": "󰉋",
+          "text": "{{workDirName}}",
+          "color": "bright_blue"
+        },
+        {
+          "type": "gitBranch",
+          "icon": "🌿",
+          "text": "{{gitBranch}}",
+          "color": "bright_green"
+        },
+        {
+          "type": "script",
+          "icon": "📜",
+          "text": "Script Module",
+          "color": "bright_cyan",
+          "scriptPath": ""
+        },
+        {
+          "type": "model",
+          "icon": "🤖",
+          "text": "{{model}}",
+          "color": "bright_yellow"
+        },
+        {
+          "type": "usage",
+          "icon": "📊",
+          "text": "{{inputTokens}} → {{outputTokens}}",
+          "color": "bright_magenta"
+        }
+      ]
+    }
+  },
+  "Router": {
+    "default": "openrouter,google/gemini-2.5-flash-lite-preview-09-2025",
+    "background": "openrouter,z-ai/glm-4.6",
+    "think": "openrouter,qwen/qwen3-vl-235b-a22b-thinking",
+    "longContext": "openrouter,anthropic/claude-sonnet-4.5",
+    "longContextThreshold": 60000,
+    "webSearch": "openrouter,google/gemini-2.5-flash-preview-09-2025",
+    "image": ""
+  },
+  "CUSTOM_ROUTER_PATH": ""
+}
