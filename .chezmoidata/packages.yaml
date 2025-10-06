@@ -1,4 +1,11 @@
 packages:
+  npm:
+    - "@anthropic-ai/claude-code"
+    - "@musistudio/claude-code-router"
+    - "@google/gemini-cli"
+    - "@openai/codex"
+  uv:
+    - "0.35.0"
   darwin:
     brew:
       - git
@@ -12,8 +19,10 @@ packages:
   arch:
     pacman:
       - coreutils
+      - uv
       - zsh
       - git
+      - micro
       - tmux
       - openssh
       - neovim
@@ -25,10 +34,7 @@ packages:
       - file
     brew:
       - gh
-      - starship
       - fzf
-      - bat
-      - fd
       - jq
       - tree
       - wget
@@ -40,18 +46,6 @@ packages:
     paru:
       - visual-studio-code-bin
       - google-chrome
-      - slack-desktop
-      - notion-app
-      - spotify
-      - discord
-      - bitwarden
-      - postman-bin
-      - alacritty
-      - brave-bin
-      - zoom
-      - obsidian
-      - telegram-desktop
-      - font-fira-code
   vscode:
     extensions:
       - ms-python.python

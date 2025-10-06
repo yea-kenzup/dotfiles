@@ -1,3 +1,4 @@
 {{- if .personal -}}
-{{ onepasswordRead "op://Private/jboubix-ssh-key/private key" "youness@elabbassi.org" }}
+{{ (onepasswordDetailsFields "e5xgj3tybkm5pie274hjpq6noy" "" "my.1password.com").private_key.value }}
 {{- end -}}
+

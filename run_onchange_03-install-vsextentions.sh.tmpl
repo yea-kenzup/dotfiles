@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+echo "=============================================="
+echo "   INSTALLING VSCODE PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.vscode.extensions -}}
+echo "--- Installing: {{ . }} ---"
+code --install-extension {{ . | quote }}
+{{ end -}}
+
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   INSTALLING NPM PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.npm -}}
+echo "--- Installing: {{ . }} ---"
+npm install -g {{ . | quote }}
+{{ end -}}
+
+

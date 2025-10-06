@@ -1,0 +1,66 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI PACKAGE INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ if eq .chezmoi.os "darwin" -}}
+echo "=============================================="
+echo "   INSTALLING MACOS PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.darwin.brew -}}
+echo "--- Installing: {{ . }} ---"
+brew install {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.cask -}}
+echo "--- Installing: {{ . }} ---"
+brew install --cask {{ . | quote }}
+{{ end -}}
+{{ end -}}
+
+
+{{ if eq .chezmoi.osRelease.id "arch" -}}
+echo "=============================================="
+echo "   INSTALLING ARCH LINUX PACKAGES"
+echo "=============================================="
+echo ""
+
+{{ range .packages.arch.pacman -}}
+echo "--- Installing: {{ . }} ---"
+sudo pacman -S  --noconfirm  {{ . | quote }}
+{{ end -}}
+{{ range .packages.arch.brew -}}
+echo "--- Installing: {{ . }} ---"
+brew install {{ . | quote }}
+{{ end -}}
+{{ range .packages.arch.cask -}}
+echo "--- Installing: {{ . }} ---"
+brew install --cask {{ . | quote }}
+{{ end -}}
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+{{ end -}}
+
+
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+echo "=============================================="
+echo "   INSTALLING UBUNTU PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.ubuntu.apt -}}
+echo "--- Installing: {{ . }} ---"
+sudo apt install {{ . | quote }}
+{{ end -}}
+{{ end -}}
+
+echo "=============================================="
+echo "   INSTALLING VSCODE PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.vscode.extensions -}}
+echo "--- Installing: {{ . }} ---"
+code --install-extension {{ . | quote }}
+{{ end -}}
+
+

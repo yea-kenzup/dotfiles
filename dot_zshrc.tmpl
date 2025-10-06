@@ -1,4 +1,9 @@
-ZSH_THEME="jboubix"
+ZSH_THEME="suvash"
+# Only start tmux automatically if not running in VSCode or Cursor
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERM_PROGRAM" != "cursor" ]; then
+ZSH_THEME="skaro"
+tmux attach -t default || tmux new -s default
+fi
 setopt prompt_subst
 autoload -Uz vcs_info
 precmd() { 
@@ -120,13 +125,9 @@ export EDITOR="code --wait"
 source $ZSH/oh-my-zsh.sh
 export PULSE_SERVER=unix:/mnt/wslg/PulseServer
 
-# if [ -z "$TMUX" ]; then
-#     tmux attach -t default || tmux new -s default
-# fi
-# Start a new tmux session in each new terminal
-if [ -z "$TMUX" ]; then
-   tmux new -s "session-$(date +%s)"
-fi
+
+
+
 
 
 eval "$(zoxide init zsh)"
