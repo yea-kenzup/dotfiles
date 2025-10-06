@@ -130,6 +130,12 @@ Host bastion-cih-staging
     HostName 52.209.185.31
     User ubuntu
     IdentityFile "~/.ssh/bastion_key.pem"
+Host coder
+    Hostname 3.250.174.177
+    User ubuntu
+    IdentityFile "~/.ssh/yea-kenzup"
+
+
 
 ## END GITPOD INTEGRATION
 # --- START CODER VSCODE coder.kenzup.io ---
@@ -139,7 +145,7 @@ Host coder-vscode.coder.kenzup.io--*
 {{ if eq .chezmoi.os "darwin" -}}
   ProxyCommand "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io/bin/coder-darwin-arm64" --global-config "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io" ssh --stdio --usage-app=vscode --disable-autostart --network-info-dir "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/net" --ssh-host-prefix coder-vscode.coder.kenzup.io-- %h
 {{ else if eq .chezmoi.os "linux" -}}
-  ProxyCommand "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io/bin/coder-darwin-arm64" --global-config "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io" ssh --stdio --usage-app=vscode --disable-autostart --network-info-dir "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/net" --ssh-host-prefix coder-vscode.coder.kenzup.io-- %h
+#  ProxyCommand "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io/bin/coder-darwin-arm64" --global-config "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/coder.kenzup.io" ssh --stdio --usage-app=vscode --disable-autostart --network-info-dir "/Users/apple/Library/Application Support/Cursor/User/globalStorage/coder.coder-remote/net" --ssh-host-prefix coder-vscode.coder.kenzup.io-- %h
 {{- end }}
   SetEnv  CODER_SSH_SESSION_TYPE=vscode
   StrictHostKeyChecking no

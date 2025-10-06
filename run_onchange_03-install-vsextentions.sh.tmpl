@@ -11,3 +11,13 @@ code --install-extension {{ . | quote }}
 {{ end -}}
 
 
+
+echo "=============================================="
+echo "   INSTALLING CURSOR PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.cursor.extensions -}}
+echo "--- Installing: {{ . }} ---"
+cursor --install-extension {{ . | quote }}
+{{ end -}}
+

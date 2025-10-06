@@ -1,0 +1,8 @@
+[user]
+	username = yea-kenzup
+	email = youness.elabbassi@kenzup.com
+	name = yea-kenzup
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = false

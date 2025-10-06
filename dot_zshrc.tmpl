@@ -4,12 +4,13 @@ if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERM_PROGRAM" != "cu
 ZSH_THEME="skaro"
 tmux attach -t default || tmux new -s default
 fi
+
 setopt prompt_subst
 autoload -Uz vcs_info
-precmd() { 
-  vcs_info 
-  print -P "%~ ${vcs_info_msg_0_}"
-}
+# precmd() { 
+#   vcs_info 
+#   print -P "%~ ${vcs_info_msg_0_}\n"
+# }
 ZSH_CUSTOM=$HOME/.oh-my-zsh_custom
 source ~/.zsh_aliases
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
@@ -29,17 +30,15 @@ plugins=(
 
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin"
 export PATH="$HOME/.shorebird/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export NVM_DIR=~/.nvm
