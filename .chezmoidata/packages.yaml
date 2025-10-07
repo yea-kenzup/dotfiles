@@ -57,6 +57,7 @@ packages:
       - charliermarsh.ruff
       - johnpapa.vscode-peacock
       - metalbear.mirrord
+      - redhat.vscode-yaml
   cursor:
     extensions:
       - ms-python.python

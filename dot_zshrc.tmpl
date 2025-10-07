@@ -113,7 +113,6 @@ export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 # ************************************************
 {{ else if eq .chezmoi.os "linux" -}}
 # git config --global core.sshCommand ssh.exe
-export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 export EDITOR="code --wait"
 {{ end -}}
 
@@ -125,8 +124,9 @@ source $ZSH/oh-my-zsh.sh
 export PULSE_SERVER=unix:/mnt/wslg/PulseServer
 
 
-
-
+GH_TOKEN=
+alias sr="GH_TOKEN={{ (onepasswordDetailsFields "dliddzdpd25phptdnop7sa5cci" "" "team-godzilla.1password.com").password.value }} python-semantic-release"
+alias sryolo="sr -v version --push --vcs-release"
 
 
 eval "$(zoxide init zsh)"
