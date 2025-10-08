@@ -1,7 +1,13 @@
 alias hh=hstr
 alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+
+
 alias kc=kubectl
+alias kctx="kc config get-contexts"
+alias kns="kc config set-context --current --namespace"
+alias kx="kc exec -it"
+alias kcu="kc config use-context"
 alias win=windsurf
 alias c=code
 alias cu=cursor
@@ -15,3 +21,4 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias lla='ls -la'
 alias llr='ls -laR'
+alias uvv="uv venv --clear && source .venv/bin/activate  && uv sync --all-extras"

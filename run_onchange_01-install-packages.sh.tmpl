@@ -55,6 +55,15 @@ sudo apt install {{ . | quote }}
 {{ end -}}
 
 echo "=============================================="
+echo "   INSTALLING UV PACKAGES"
+echo "=============================================="
+echo ""
+{{ range .packages.uv -}}
+echo "--- Installing: {{ . }} ---"
+uv pip install {{ . | quote }}
+{{ end -}}
+
+echo "=============================================="
 echo "   INSTALLING VSCODE PACKAGES"
 echo "=============================================="
 echo ""

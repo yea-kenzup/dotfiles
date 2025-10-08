@@ -131,3 +131,8 @@ alias sryolo="sr -v version --push --vcs-release"
 
 eval "$(zoxide init zsh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+source $ZSH_CUSTOM/plugins/zsh_codex/zsh_codex.plugin.zsh
+bindkey '^X' create_completion
+eval "$(wtp completion zsh)"
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -5,7 +5,7 @@ packages:
     - "@google/gemini-cli"
     - "@openai/codex"
   uv:
-    - "0.35.0"
+    - openai
   darwin:
     brew:
       - git
@@ -35,6 +35,8 @@ packages:
       - terraform
       - kubectl
       - helm
+      - portaudio-dev
+      - portaudio
     brew:
       - gh
       - fzf
@@ -45,6 +47,7 @@ packages:
       - watchman
       - charmbracelet/tap/crush
       - kubelogin
+      - satococoa/tap/wtp
     cask:
       - iterm2
     paru:
@@ -58,13 +61,18 @@ packages:
       - johnpapa.vscode-peacock
       - metalbear.mirrord
       - redhat.vscode-yaml
+      - github.vscode-pull-request-github
+      - github.vscode-github-actions
   cursor:
     extensions:
+      - github.vscode-github-actions
       - ms-python.python
+      - github.vscode-pull-request-github
       - tamasfe.even-better-toml
       - charliermarsh.ruff
       - johnpapa.vscode-peacock
       - metalbear.mirrord
+      - ms-kubernetes-tools.vscode-kubernetes-tools
 
 
 
