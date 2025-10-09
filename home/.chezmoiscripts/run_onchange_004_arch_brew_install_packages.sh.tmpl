@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI ARCH BREW PACKAGE INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ if eq .chezmoi.osRelease.id "arch" -}}
+{{ range .packages.arch.brew -}}
+echo "--- Installing: {{ . }} ---"
+brew install {{ . | quote }}
+{{ end -}}
+{{ end -}}

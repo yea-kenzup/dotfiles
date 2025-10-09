@@ -4,6 +4,7 @@ packages:
     - "@musistudio/claude-code-router"
     - "@google/gemini-cli"
     - "@openai/codex"
+    - dotenv
   uv:
     - openai
   darwin:
@@ -37,6 +38,7 @@ packages:
       - helm
       - portaudio-dev
       - portaudio
+      - lsof
     brew:
       - gh
       - fzf
@@ -48,11 +50,9 @@ packages:
       - charmbracelet/tap/crush
       - kubelogin
       - satococoa/tap/wtp
-    cask:
-      - iterm2
+      - direnv
     paru:
       - visual-studio-code-bin
-      - google-chrome
   vscode:
     extensions:
       - ms-python.python

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI ARCH NVM INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ if eq .chezmoi.osRelease.id "arch" -}}
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+{{ end -}}

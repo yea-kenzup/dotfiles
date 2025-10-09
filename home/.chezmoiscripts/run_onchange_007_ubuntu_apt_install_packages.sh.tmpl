@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI UBUNTU APT PACKAGE INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+{{ range .packages.ubuntu.apt -}}
+echo "--- Installing: {{ . }} ---"
+sudo apt install {{ . | quote }}
+{{ end -}}
+{{ end -}}

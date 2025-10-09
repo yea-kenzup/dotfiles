@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI DARWIN BREW PACKAGE INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ if eq .chezmoi.os "darwin" -}}
+{{ range .packages.darwin.brew -}}
+echo "--- Installing: {{ . }} ---"
+brew install {{ . | quote }}
+{{ end -}}
+{{ end -}}

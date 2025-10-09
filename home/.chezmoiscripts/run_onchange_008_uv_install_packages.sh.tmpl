@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI UV PACKAGE INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ range .packages.uv -}}
+echo "--- Installing: {{ . }} ---"
+uv tool install {{ . | quote }}
+{{ end -}}
