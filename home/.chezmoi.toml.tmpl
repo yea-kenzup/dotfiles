@@ -65,4 +65,8 @@ recipient = "age1rlq887frsuue6cuwy0t2g8eykejtznjwzsjjh4394pwwqthqevds37m279"
     args = ["--wait"]
 
 [hooks.read-source-state.pre]
-    command = "~/.local/share/chezmoi/.install-password-manager.sh"
+{{ if eq .chezmoi.os "darwin" -}}
+    command = "/Users/apple/.local/share/chezmoi/.install-password-manager.sh"
+{{ else if eq .chezmoi.os "linux" -}}
+    command = "/home/jboubix/.local/share/chezmoi/.install-password-manager.sh"
+{{- end }}
