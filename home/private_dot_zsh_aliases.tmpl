@@ -3,7 +3,6 @@ alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias ch=chezmoi
 alias chyolo="chezmoi apply --force"
-alias ccmcpref="claude mcp add --transport http ref 'https://api.ref.tools/mcp?apiKey=ref-6002766296ee463775b2'"
 alias kc=kubectl
 alias kctx="kc config get-contexts"
 alias kns="kc config set-context --current --namespace"
@@ -27,5 +26,6 @@ alias uvv="uv venv --clear && source .venv/bin/activate  && uv sync --all-extras
 alias tmuxsource="tmux source-file ~/.tmux.conf"
 alias gsmup="git submodule update --init --recursive -j8 --depth 3"
 alias cure="cursor --reuse-window"
-alias y="EDITOR=code yazi"
+alias y="EDITOR=micro yazi"
 alias wtpa="wtp add -b"
+alias m=micro
