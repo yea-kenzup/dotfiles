@@ -25,11 +25,10 @@ echo "   INSTALLING ARCH LINUX PACKAGES"
 echo "=============================================="
 echo ""
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-sudo pacman -S --needed base-devel
-
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-cd $HOME/.local/cache/paru
-makepkg -si
+#cd $HOME/.local/cache/paru
+#makepkg -si
+
 cd $HOME/.local/cache/wsl-windows-hello
 ./release/install.sh
 curl -L https://coder.com/install.sh | sh

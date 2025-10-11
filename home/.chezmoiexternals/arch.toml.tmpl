@@ -16,13 +16,16 @@
     url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
     exact = true
     stripComponents = 1
+["./.tmux/plugins/tpm"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tpm"
 [".local/bin/age"]
     type = "archive-file"
     url = "https://github.com/FiloSottile/age/releases/download/v1.1.1/age-v1.1.1-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
     path = "age/age"
-[".local/cache/paru"]
-    type = "archive"
-    url = "https://github.com/Morganamilo/paru/releases/download/v2.1.0/paru-v2.1.0-x86_64.tar.zst"
+#[".local/cache/paru"]
+#    type = "git-repo"
+#    url = "https://aur.archlinux.org/paru.git"
 [".local/cache/wsl-windows-hello"]
     type = "archive"
     url = "https://github.com/lzlrd/wsl-hello-sudo/releases/download/v3.0.0/release.tar.gz"
@@ -30,3 +33,6 @@
     type = "git-repo"
     url = "git@github.com:godzilla-app/monorepo.git"
     "clone.args"= ["--recurse-submodules","-j8"]
+["./.local/opt/flutter"]
+    type = "git-repo"
+    url = "https://github.com/flutter/flutter.git"

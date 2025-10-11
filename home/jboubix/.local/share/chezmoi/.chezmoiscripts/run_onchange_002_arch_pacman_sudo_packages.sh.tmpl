@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.osrelease.id "arch" -}}
+# This script installs packages specific to Arch Linux that may require special handling or are added later.
+
+# Check if 'pacman-sudo' package exists (assuming this is the package name intended by user)
+if ! pacman -Q pacman-sudo &> /dev/null; then
+    echo "Ensuring 'pacman-sudo' or equivalent package is installed (placeholder check)..."
+    # Note: 'pacman-sudo' is not a standard Arch package. This may fail if the package name is wrong.
+    sudo pacman -S --noconfirm pacman-sudo 2>/dev/null || echo "Note: 'pacman-sudo' package not found or failed to install."
+fi
+
+# Add other standard or explicitly requested Arch packages here using sudo pacman -S --noconfirm ...
+{{ end -}}
+{{ end -}}

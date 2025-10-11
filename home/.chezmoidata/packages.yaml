@@ -4,6 +4,7 @@ packages:
     - "@musistudio/claude-code-router"
     - "@google/gemini-cli"
     - "@openai/codex"
+    - opencode-ai
     - dotenv
   uv:
     - openai
@@ -18,9 +19,15 @@ packages:
       - zsh
       - git
   arch:
-    pacman:
+    pacman_sudo:
       - coreutils
+      - lsof
+    pacman:
+      - base-devel
+      - man-db
+      - man-pages
       - uv
+      - docker-compose
       - zsh
       - git
       - micro
@@ -38,7 +45,6 @@ packages:
       - helm
       - portaudio-dev
       - portaudio
-      - lsof
     brew:
       - gh
       - fzf
@@ -51,8 +57,14 @@ packages:
       - kubelogin
       - satococoa/tap/wtp
       - direnv
+      - tmuxp
     paru:
       - visual-studio-code-bin
+      - bun
+      - android
+      - android-sdk
+      - android-dev
+      - android-sdk-platform-tools
   vscode:
     extensions:
       - ms-python.python

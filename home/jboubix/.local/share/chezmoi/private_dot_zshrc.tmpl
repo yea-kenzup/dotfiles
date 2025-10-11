@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.os "linux" -}}
+# Set locale for Zendev-Sh environment
+export LANG=en_US.utf-8
+export LC_ALL=en_US.utf-8
+{{- end -}}
