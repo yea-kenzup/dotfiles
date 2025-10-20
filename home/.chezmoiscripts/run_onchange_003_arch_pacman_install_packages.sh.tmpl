@@ -5,9 +5,11 @@ echo "   CHEZMOI ARCH PACMAN PACKAGE INSTALLATION"
 echo "=============================================="
 echo ""
 
+{{ if eq .chezmoi.os "linux" -}}
 {{ if eq .chezmoi.osRelease.id "arch" -}}
 {{ range .packages.arch.pacman -}}
 echo "--- Installing: {{ . }} ---"
 sudo pacman -S  --noconfirm  {{ . | quote }}
+{{ end -}}
 {{ end -}}
 {{ end -}}
