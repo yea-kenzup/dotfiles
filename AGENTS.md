@@ -15,9 +15,16 @@ This document provides comprehensive guidance for AI agents to help configure an
 
 ```
 /home/jboubix/.local/share/chezmoi/
+├── docs/                           # Documentation directory
+│   └── 0000-200-*.md              # Change documentation files
 ├── home/                          # Main dotfiles directory
 │   ├── .chezmoidata/             # Chezmoi data files
-│   │   └── packages.yaml         # Package management configuration
+│   │   ├── packages-common.yaml  # Cross-platform packages
+│   │   ├── packages-darwin.yaml  # macOS packages
+│   │   ├── packages-ubuntu.yaml  # Ubuntu packages
+│   │   ├── packages-arch-pacman.yaml # Arch pacman packages
+│   │   ├── packages-arch-brew.yaml   # Arch Linuxbrew packages
+│   │   └── packages-arch-paru.yaml   # Arch AUR packages
 │   ├── .chezmoiexternals/        # External dependencies
 │   │   └── arch.toml.tmpl        # Arch Linux external packages
 │   ├── dot_config/               # Application configurations
@@ -31,31 +38,46 @@ This document provides comprehensive guidance for AI agents to help configure an
 │   ├── dot_local/                # Local binaries and scripts
 │   ├── private_dot_*             # Private configuration files
 │   └── jboubix/                  # User-specific directory
+├── AGENTS.md                      # This file - Agent instructions
 └── README.md
 ```
 
 ## Key Configuration Files
 
-### 1. Package Management (`packages.yaml`)
+### 1. Package Management
 
-The system supports multiple package managers across different platforms:
+The system uses modular package configuration files separated by platform and installation method:
+
+**Cross-Platform (`packages-common.yaml`)**:
+- `npm`: Node.js packages for AI tools
+- `uv`: Python packages
+- `vscode`: VS Code extensions
+- `cursor`: Cursor extensions
+
+**Platform-Specific Files**:
+- `packages-darwin.yaml`: macOS packages (brew, casks)
+- `packages-ubuntu.yaml`: Ubuntu packages (apt)
+- `packages-arch-pacman.yaml`: Arch Linux pacman packages
+- `packages-arch-brew.yaml`: Arch Linux Linuxbrew packages
+- `packages-arch-paru.yaml`: Arch Linux AUR packages (paru)
 
 **Arch Linux (Primary)**:
-- `pacman`: Core system packages (rust, git, neovim, tmux, etc.)
-- `paru`: AUR packages (visual-studio-code-bin, bun)
+- `pacman`: Core system packages (base-devel, git, neovim, tmux, etc.)
+- `pacman_sudo`: System packages requiring sudo (coreutils, lsof)
 - `brew`: Additional tools (gh, fzf, jq, tree, etc.)
+- `paru`: AUR packages (visual-studio-code-bin, bun, android tools)
 
 **macOS**:
 - `brew`: Core packages and casks
-- `npm`: Node.js packages
+- Development tools and CLI utilities
 
 **Ubuntu**:
 - `apt`: Basic system packages
 
 **Development Tools**:
-- VS Code extensions
-- Cursor extensions
-- NPM packages for AI tools
+- VS Code extensions for Python, Rust, Kubernetes
+- Cursor extensions with additional Kubernetes tools
+- NPM packages for AI tools (Claude, Gemini, OpenAI)
 
 ### 2. Shell Configuration
 
@@ -134,14 +156,31 @@ The system supports multiple package managers across different platforms:
 
 ### 1. Adding New Packages
 
-To add a new package, edit `home/.chezmoidata/packages.yaml`:
+To add a new package, edit the appropriate package file in `home/.chezmoidata/`:
 
+**For cross-platform packages** (npm, uv, extensions):
 ```yaml
+# packages-common.yaml
+npm:
+  - new-npm-package
+vscode:
+  extensions:
+    - publisher.extension-name
+```
+
+**For platform-specific packages**:
+```yaml
+# packages-arch-pacman.yaml
 arch:
   pacman:
     - new-package
+
+# packages-darwin.yaml  
+darwin:
   brew:
-    - new-tool
+    - new-mac-tool
+  casks:
+    - new-mac-app
 ```
 
 ### 2. Adding SSH Hosts
@@ -173,8 +212,9 @@ export NEW_VAR="value"
 
 ### 5. VS Code/Cursor Extensions
 
-Add to `packages.yaml`:
+Add to the appropriate package file:
 
+**Cross-platform extensions** (packages-common.yaml):
 ```yaml
 vscode:
   extensions:
@@ -183,6 +223,62 @@ cursor:
   extensions:
     - publisher.extension-name
 ```
+
+**Platform-specific extensions** (if needed):
+Add to platform-specific package files like `packages-darwin.yaml`
+
+## Applying Changes
+
+### Force Apply Changes
+When making configuration changes, use the following command to apply them:
+
+```bash
+chyolo
+```
+
+This alias runs `chezmoi apply --force` which overwrites existing files with the new configuration.
+
+### Documentation Requirements
+
+**ALL CHANGES** must be documented in the `docs/` directory using the following format:
+
+1. **File Naming**: `docs/0000-200-descriptive-name.md`
+   - Use sequential numbering (0000-200, 0000-201, etc.)
+   - Use descriptive kebab-case filenames
+
+2. **Required Sections**:
+   ```markdown
+   # Change Title
+   
+   ## Date
+   YYYY-MM-DD
+   
+   ## Changes Made
+   [Detailed description of what was changed]
+   
+   ## Files Modified
+   [List of files added/modified/removed]
+   
+   ## Benefits
+   [Explanation of why this change was made]
+   
+   ## Testing
+   [How the change was tested/verified]
+   ```
+
+3. **Documentation Process**:
+   - Create documentation file **before** or **during** the change process
+   - Update the file with actual changes made
+   - Include all files that were modified, created, or removed
+   - Explain the reasoning behind the changes
+
+### Change Workflow
+
+1. **Plan**: Create documentation file with planned changes
+2. **Implement**: Make the actual configuration changes
+3. **Document**: Update the documentation file with actual changes
+4. **Apply**: Run `chyolo` to apply changes
+5. **Commit**: Commit both the changes and documentation
 
 ## Chezmoi Commands
 
@@ -252,11 +348,13 @@ chezmoi update
 
 1. **Always use templates** for sensitive data
 2. **Test changes** with `chezmoi diff` before applying
-3. **Keep platform-specific configs** in conditional blocks
+3. **Keep platform-specific configs** in appropriate package files
 4. **Use descriptive names** for aliases and functions
-5. **Document new configurations** in this file
+5. **Document ALL changes** in `docs/` directory using the required format
 6. **Encrypt sensitive files** with age
 7. **Use 1Password** for secrets management
+8. **Apply changes** with `chyolo` after making modifications
+9. **Follow the documentation workflow** for every change
 
 ## Emergency Recovery
 
