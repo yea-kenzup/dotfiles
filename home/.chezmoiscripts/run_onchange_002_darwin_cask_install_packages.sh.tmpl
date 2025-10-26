@@ -6,7 +6,7 @@ echo "=============================================="
 echo ""
 
 {{ if eq .chezmoi.os "darwin" -}}
-{{ range .packages.darwin.cask -}}
+{{ range .packages.darwin.casks -}}
 echo "--- Installing: {{ . }} ---"
 brew install --cask {{ . | quote }}
 {{ end -}}

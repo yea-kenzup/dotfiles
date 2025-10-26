@@ -18,7 +18,7 @@ echo ""
 
 
 
-
+{{ if eq .chezmoi.os "linux" -}}
 {{ if eq .chezmoi.osRelease.id "arch" -}}
 echo "=============================================="
 echo "   INSTALLING ARCH LINUX PACKAGES"
@@ -45,6 +45,9 @@ echo "   INSTALLING UBUNTU PACKAGES"
 echo "=============================================="
 echo ""
 {{ end -}}
+{{ end -}}
+
+
 
 echo "=============================================="
 echo "   INSTALLING VSCODE PACKAGES"
