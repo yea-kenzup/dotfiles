@@ -1,0 +1,30 @@
+packages:
+  npm:
+    - "@anthropic-ai/claude-code"
+    - "@musistudio/claude-code-router"
+    - "@google/gemini-cli"
+    - "@openai/codex"
+    - opencode-ai
+    - dotenv
+  uv:
+    - openai
+  vscode:
+    extensions:
+      - ms-python.python
+      - tamasfe.even-better-toml
+      - charliermarsh.ruff
+      - johnpapa.vscode-peacock
+      - metalbear.mirrord
+      - redhat.vscode-yaml
+      - github.vscode-pull-request-github
+      - github.vscode-github-actions
+  cursor:
+    extensions:
+      - github.vscode-github-actions
+      - ms-python.python
+      - github.vscode-pull-request-github
+      - tamasfe.even-better-toml
+      - charliermarsh.ruff
+      - johnpapa.vscode-peacock
+      - metalbear.mirrord
+      - ms-kubernetes-tools.vscode-kubernetes-tools

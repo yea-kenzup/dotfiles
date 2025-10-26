@@ -1,0 +1,15 @@
+packages:
+  arch:
+    brew:
+      - gh
+      - fzf
+      - jq
+      - tree
+      - wget
+      - gpg
+      - watchman
+      - charmbracelet/tap/crush
+      - kubelogin
+      - satococoa/tap/wtp
+      - direnv
+      - tmuxp

@@ -56,6 +56,28 @@ recipient = "age1rlq887frsuue6cuwy0t2g8eykejtznjwzsjjh4394pwwqthqevds37m279"
         "zsh-syntax-highlighting",
     ]
 
+{{/* Include package files */}}
+{{- $commonPackages := include ".chezmoidata/packages-common.yaml" | fromYaml -}}
+{{- $darwinPackages := include ".chezmoidata/packages-darwin.yaml" | fromYaml -}}
+{{- $ubuntuPackages := include ".chezmoidata/packages-ubuntu.yaml" | fromYaml -}}
+{{- $archPacmanPackages := include ".chezmoidata/packages-arch-pacman.yaml" | fromYaml -}}
+{{- $archBrewPackages := include ".chezmoidata/packages-arch-brew.yaml" | fromYaml -}}
+{{- $archParuPackages := include ".chezmoidata/packages-arch-paru.yaml" | fromYaml -}}
+
+{{/* Merge packages based on platform */}}
+{{- $packages := $commonPackages.packages -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $packages = merge $packages $darwinPackages.packages -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if eq .chezmoi.osRelease.id "ubuntu" -}}
+{{-     $packages = merge $packages $ubuntuPackages.packages -}}
+{{-   else if eq .chezmoi.osRelease.id "arch" -}}
+{{-     $packages = merge $packages $archPacmanPackages.packages $archBrewPackages.packages $archParuPackages.packages -}}
+{{-   end -}}
+{{- end -}}
+
+    packages = {{ $packages | toJSON | quote }}
+
 
 [github]
     refreshPeriod = "12h"

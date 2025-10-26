@@ -1,0 +1,6 @@
+packages:
+  ubuntu:
+    apt:
+      - coreutils
+      - zsh
+      - git

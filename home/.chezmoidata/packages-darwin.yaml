@@ -1,0 +1,25 @@
+packages:
+  darwin:
+    brew:
+      - git
+      - gh
+      - zoxide
+      - fzf
+      - jq
+      - tree
+      - wget
+      - gpg
+      - go
+      - minikube
+      - awscli
+      - gcc
+      - watchman
+      - cloudflared
+      - telnet
+      - direnv
+      - tmuxp
+      - satococoa/tap/wtp
+      - charmbracelet/tap/crush
+      - kubelogin
+    casks:
+      - 1password-cli

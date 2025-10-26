@@ -1,0 +1,29 @@
+packages:
+  arch:
+    pacman_sudo:
+      - coreutils
+      - lsof
+    pacman:
+      - base-devel
+      - man-db
+      - man-pages
+      - uv
+      - docker-compose
+      - zsh
+      - git
+      - micro
+      - tmux
+      - openssh
+      - neovim
+      - ripgrep
+      - zoxide
+      - base-devel 
+      - procps-ng 
+      - curl 
+      - file
+      - terraform
+      - kubectl
+      - helm
+      - portaudio-dev
+      - portaudio
+      - eza
