@@ -1,9 +1,11 @@
 packages:
-  arch:
-    paru:
-      - visual-studio-code-bin
-      - bun
-      - android
-      - android-sdk
-      - android-dev
-      - android-sdk-platform-tools
+    arch:
+        paru:
+            - visual-studio-code-bin
+            - bun
+            - android
+            - android-sdk
+            - android-dev
+            - android-sdk-platform-tools
+            - yaak
+            - google-chrome

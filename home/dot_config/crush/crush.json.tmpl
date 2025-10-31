@@ -1,9 +1,6 @@
 {
     "$schema": "https://charm.land/crush.json",
     "providers": {
-        "openrouter": {
-            "api_key": {{  (onepasswordDetailsFields "inkae7c4v5ngblin4xiagckgga" "" "team-godzilla.1password.com").password.value | quote}}
-        },
         "lmstudio": {
             "type": "openai",
             "base_url": "http://localhost:1234/v1",
@@ -30,20 +27,41 @@
                     "context_window": 65536,
                     "default_max_tokens": 8192,
                     "supports_tools": true
+                },
+                {
+                    "id": "deepseek/deepseek-r1-0528-qwen3-8b",
+                    "name": "DeepSeek R1 0528 Qwen 3 8B",
+                    "context_window": 65536,
+                    "default_max_tokens": 8192,
+                    "supports_tools": true
+                },
+                {
+                    "id": "google/gemma-3-12b",
+                    "name": "Gemma 3 12B",
+                    "context_window": 65536,
+                    "default_max_tokens": 8192,
+                    "supports_tools": true
+                },
+                {
+                    "id": "qwen/qwen3-8b",
+                    "name": "Qwen 3 8B",
+                    "context_window": 65536,
+                    "default_max_tokens": 8192,
+                    "supports_tools": true
                 }
             ]
         }
     },
     "models": {
         "large": {
-            "model": "z-ai/glm-4.6",
-            "provider": "openrouter",
-            "max_tokens": 2048
+            "model": "google/gemma-3-12b",
+            "provider": "lmstudio",
+            "max_tokens": 8192
         },
         "small": {
-            "model": "google/gemini-2.5-flash-lite-preview-09-2025",
-            "provider": "openrouter",
-            "max_tokens": 4096
+            "model": "qwen/qwen3-4b-2507",
+            "provider": "lmstudio",
+            "max_tokens": 2048
         }
     },
 
@@ -52,7 +70,7 @@
             "type": "http",
             "url": "https://metamcp.kenzup.io/metamcp/yea/mcp",
             "headers": {
-                "X-API-Key": {{ (onepasswordDetailsFields "grryk2plsuho6xp7ftxbrkd4tu" "" "team-godzilla.1password.com").password.value | quote }}
+                "X-API-Key": "$(echo $MCP_METAMCP_API_KEY)"
             },
             "enabled": "false"
         },
@@ -63,6 +81,27 @@
                 "-y",
                 "tmux-mcp", "--shell-type=zsh"
             ]
+        },
+        "playwright": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [ "-y",
+          "@playwright/mcp@latest"
+        ],
+        "enabled": true
+      },
+        "onepassword": {
+            "type": "stdio",
+            "command": "uv",
+            "args": [
+                "run",
+                "--directory",
+                "/home/jboubix/mcp-onepassword",
+                "run_server.py"
+            ],
+            "env": {
+                "ONEPASSWORD_SERVICE_TOKEN": "$(echo $ONEPASSWORD_SERVICE_TOKEN)"
+            }
         }
     }
 }

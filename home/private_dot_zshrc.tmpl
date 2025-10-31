@@ -1,4 +1,5 @@
-ZSH_THEME="suvash"
+export LANG=en_US.UTF-8
+ZSH_THEME="jboubix"
 # Only start tmux automatically if not running in VSCode or Cursor
 # if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERM_PROGRAM" != "cursor" ]; then
 # ZSH_THEME="skaro"
@@ -7,8 +8,8 @@ ZSH_THEME="suvash"
 
 setopt prompt_subst
 autoload -Uz vcs_info
-# precmd() { 
-#   vcs_info 
+# precmd() {
+#   vcs_info
 #   print -P "%~ ${vcs_info_msg_0_}\n"
 # }
 ZSH_CUSTOM=$HOME/.oh-my-zsh_custom
@@ -23,14 +24,15 @@ plugins=(
     aliases
     1password
     encode64
+	yarn
     )
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 30
-zstyle ':vcs_info:*' enable git 
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats '%b%f %m%u%c %a'
-zstyle ':vcs_info:*' check-for-changes true 
-zstyle ':vcs_info:*' stagedstr ' +' 
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr ' +'
 zstyle ':vcs_info:*' unstagedstr ' !'
 
 COMPLETION_WAITING_DOTS="true"
@@ -59,9 +61,10 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 
-# history setup
+# history setup - separate session history with global access
 setopt APPEND_HISTORY
-setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+unsetopt SHARE_HISTORY
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
 HISTSIZE=999
@@ -70,6 +73,13 @@ setopt EXTENDED_HISTORY
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-f" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+
+# Function to search global history
+global_history() {
+  fc -RI  # Read from history file
+  hstr --
+}
+bindkey -s "\C-g" "\C-a global_history\C-j"  # Ctrl-g for global history
 
 source ~/.nvm/nvm.sh
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -132,16 +142,22 @@ export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 source $ZSH/oh-my-zsh.sh
 export PULSE_SERVER=unix:/mnt/wslg/PulseServer
 
-
-GH_TOKEN=
-alias sr="GH_TOKEN={{ (onepasswordDetailsFields "dliddzdpd25phptdnop7sa5cci" "" "team-godzilla.1password.com").password.value }} python-semantic-release"
+alias sr="python-semantic-release"
 alias sryolo="sr -v version --push --vcs-release"
-
-
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ANDROID_HOME=/home/jboubix/Android/Sdk
 eval "$(zoxide init zsh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source $ZSH_CUSTOM/plugins/zsh_codex/zsh_codex.plugin.zsh
 bindkey '^X' create_completion
 eval "$(wtp completion zsh)"
+eval "$(wtp shell-init zsh)"
 eval "$(direnv hook zsh)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export EDITOR=micro
+export ZED_ALLOW_EMULATED_GPU=1
+zed="WAYLAND_DISPLAY='' zed'"
+export GALLIUM_DRIVER=d3d12
+export LIBVA_DRIVER_NAME=d3d12
+export ZED_AWS_PROFILE=default
+source $HOME/.secrets

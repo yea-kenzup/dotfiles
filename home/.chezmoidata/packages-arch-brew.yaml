@@ -1,15 +1,16 @@
 packages:
-  arch:
-    brew:
-      - gh
-      - fzf
-      - jq
-      - tree
-      - wget
-      - gpg
-      - watchman
-      - charmbracelet/tap/crush
-      - kubelogin
-      - satococoa/tap/wtp
-      - direnv
-      - tmuxp
+    arch:
+        brew:
+            - gh
+            - fzf
+            - jq
+            - tree
+            - wget
+            - gpg
+            - watchman
+            - charmbracelet/tap/crush
+            - kubelogin
+            - satococoa/tap/wtp
+            - direnv
+            - tmuxp
+            - dhth/tap/act3
