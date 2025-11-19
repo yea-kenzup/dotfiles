@@ -38,6 +38,18 @@
         ],
         "enabled": true
       },
+  	  "postgres": {
+        "type": "local",
+        "command": [
+          "uv",
+          "run",
+          "postgres-mcp"
+        ],
+        "environment": {
+          "DATABASE_URI": "postgres://postgres:postgres@localhost:5432/postgres"
+        },
+        "enabled": true
+      },
   	  "serena": {
         "type": "local",
         "command": [
