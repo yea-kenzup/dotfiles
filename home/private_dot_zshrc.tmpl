@@ -133,6 +133,7 @@ export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 # ************************************************
 {{ else if eq .chezmoi.os "linux" -}}
 # git config --global core.sshCommand ssh.exe
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end -}}
 
 # **************** /OS SPECIFIC ****************
@@ -147,8 +148,7 @@ alias sryolo="sr -v version --push --vcs-release"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export ANDROID_HOME=/home/jboubix/Android/Sdk
 eval "$(zoxide init zsh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-source $ZSH_CUSTOM/plugins/zsh_codex/zsh_codex.plugin.zsh
+#source $ZSH_CUSTOM/plugins/zsh_codex/zsh_codex.plugin.zsh
 bindkey '^X' create_completion
 eval "$(wtp completion zsh)"
 eval "$(wtp shell-init zsh)"
