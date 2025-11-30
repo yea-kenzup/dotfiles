@@ -19,7 +19,7 @@ echo ""
 
 
 {{ if eq .chezmoi.os "linux" -}}
-{{ if eq .chezmoi.osRelease.id "arch" -}}
+{{ if eq .chezmoi.osRelease.id "arch" "garuda" -}}
 echo "=============================================="
 echo "   INSTALLING ARCH LINUX PACKAGES"
 echo "=============================================="
@@ -32,7 +32,7 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 cd $HOME/.local/cache/wsl-windows-hello
 ./release/install.sh
 curl -L https://coder.com/install.sh | sh
-
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install --lts

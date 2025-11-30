@@ -9,6 +9,7 @@ Host *
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 # {{ else if eq .chezmoi.os "linux" -}}
 #   IdentityAgent "/home/jboubix/.cache/1password/t/agent.sock"
+	IdentityAgent ~/.1password/agent.sock
 {{- end }}
 
 #Match host github.com exec "[ $(git config user.email) = youness.elabbassi@kenzup.com ]"

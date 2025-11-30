@@ -1,15 +1,15 @@
 #!/bin/bash
 
 echo "=============================================="
-echo "   CHEZMOI ARCH BREW PACKAGE INSTALLATION"
+echo "   CHEZMOI ARCH AUR PACKAGE INSTALLATION"
 echo "=============================================="
 echo ""
 
 {{ if eq .chezmoi.os "linux" -}}
-{{ if eq .chezmoi.osRelease.id "arch" -}}
-{{ range .packages.arch.brew -}}
+{{ if eq .chezmoi.osRelease.id "arch" "garuda" -}}
+{{ range .packages.arch.paru -}}
 echo "--- Installing: {{ . }} ---"
-brew install {{ . | quote }}
+paru -S --needed --noconfirm  {{ . | quote }}
 {{ end -}}
 {{ end -}}
 {{ end -}}

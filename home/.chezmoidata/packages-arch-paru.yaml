@@ -3,9 +3,14 @@ packages:
         paru:
             - visual-studio-code-bin
             - bun
-            - android
+            - android-studio
             - android-sdk
-            - android-dev
             - android-sdk-platform-tools
-            - yaak
+            - yaak-bin
             - google-chrome
+            - slack-desktop
+            - obsidian
+            - lmstudio
+            - cherry-studio
+            - miniconda3
+            # - antigravity-bin

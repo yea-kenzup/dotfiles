@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "linux" -}}
-{{ if eq .chezmoi.osrelease.id "arch" -}}
+{{ if eq .chezmoi.osrelease.id "arch" "garuda" -}}
 # This script installs packages specific to Arch Linux that may require special handling or are added later.
 
 # Check if 'pacman-sudo' package exists (assuming this is the package name intended by user)

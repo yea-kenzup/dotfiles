@@ -71,12 +71,12 @@ recipient = "age1rlq887frsuue6cuwy0t2g8eykejtznjwzsjjh4394pwwqthqevds37m279"
 {{- else if eq .chezmoi.os "linux" -}}
 {{-   if eq .chezmoi.osRelease.id "ubuntu" -}}
 {{-     $packages = merge $packages $ubuntuPackages.packages -}}
-{{-   else if eq .chezmoi.osRelease.id "arch" -}}
+{{-   else if eq .chezmoi.osRelease.id "arch" "garuda" -}}
 {{-     $packages = merge $packages $archPacmanPackages.packages $archBrewPackages.packages $archParuPackages.packages -}}
 {{-   end -}}
 {{- end -}}
 
-    packages = {{ $packages | toJSON | quote }}
+
 
 
 [github]
