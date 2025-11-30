@@ -22,47 +22,45 @@
             }
         }
     },
-    "mcp": {
-        "Ref": {
-            "type": "remote",
-            "url": "https://api.ref.tools/mcp",
-            "headers": {
-                "x-ref-api-key": "{env:MCP_REF_API_KEY}"
-            }
+  	"mcp": {
+  		"Ref": {
+  		  "type": "remote",
+  		  "url": "https://api.ref.tools/mcp",
+  		  "headers": {
+  		    "x-ref-api-key": "{env:MCP_REF_API_KEY}"
+  		  }
+  		},
+  	  "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "@playwright/mcp@latest"
+        ],
+        "enabled": true
+      },
+  	  "postgres": {
+        "type": "local",
+        "command": [
+          "uv",
+          "run",
+          "postgres-mcp"
+        ],
+        "environment": {
+          "DATABASE_URI": "postgres://postgres:postgres@localhost:5432/postgres"
         },
-        "playwright": {
-            "type": "local",
-            "command": [
-                "npx",
-                "@playwright/mcp@latest"
-            ],
-            "enabled": true
-        },
-        "postgres": {
-            "type": "local",
-            "command": [
-                "uvx",
-                "run",
-                "--python",
-                "3.12",
-                "postgres-mcp"
-            ],
-            "environment": {
-                "DATABASE_URI": "postgresql://postgres:postgres@localhost:5432/postgres"
-            },
-            "enabled": true
-        },
-        "serena": {
-            "type": "local",
-            "command": [
-                "uvx",
-                "--from",
-                "git+https://github.com/oraios/serena",
-                "serena",
-                "start-mcp-server"
-            ],
-            "enabled": false
-        },
+        "enabled": true
+      },
+  	  "serena": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "--from",
+          "git+https://github.com/oraios/serena",
+          "serena",
+          "start-mcp-server"
+        ],
+        "enabled": false
+      },
     },
     "agent": {
         "build": {
