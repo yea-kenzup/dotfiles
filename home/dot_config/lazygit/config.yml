@@ -1,0 +1,50 @@
+git:
+  autoFetch: true
+  autoRefresh: true
+  commit:
+    autoWrapCommitMessage: false
+gui:
+  authorColors: {}
+  branchColors: {}
+  commitLength:
+    show: true
+  mouseEvents: true
+  scrollHeight: 2
+  scrollPastBottom: true
+  showFileTree: true
+  showBottomLine: true
+  showIcons: true
+  showListFooter: true
+  showRandomTip: true
+  sidePanelWidth: 0.3333
+  theme:
+    activeBorderColor:
+      - green
+      - bold
+    inactiveBorderColor:
+      - white
+    optionsTextColor:
+      - blue
+    selectedLineBgColor:
+      - default
+    cherryPickedCommitBgColor:
+      - cyan
+    cherryPickedCommitFgColor:
+      - blue
+    unstagedChangesColor:
+      - red
+    defaultFgColor:
+      - default
+quitOnTopLevelReturn: false
+disableStartupPopups: false
+notARepository: 'skip'
+promptToReturnFromSubprocess: true
+customCommands:
+  - key: 'c'
+    command: 'aicommit -c "Use angular conventional commit"'
+    context: 'files'
+    description: 'AI commit with angular convention'
+  - key: 'g'
+    command: 'aicommit -c "Use angular conventional commit"'
+    context: 'files'
+    description: 'AI commit with angular convention'

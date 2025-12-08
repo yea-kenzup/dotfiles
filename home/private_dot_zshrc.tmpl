@@ -134,6 +134,7 @@ export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 {{ else if eq .chezmoi.os "linux" -}}
 # git config --global core.sshCommand ssh.exe
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export BROWSER="google-chrome-stable"
 {{ end -}}
 
 # **************** /OS SPECIFIC ****************
@@ -164,3 +165,10 @@ export ZED_AWS_PROFILE=default
 source $HOME/.secrets
 export WEBKIT_DISABLE_DMABUF_RENDERER=1
 export PATH="$HOME/miniconda3/bin:$PATH"
+export GOOGLE_CLOUD_PROJECT=kenzup-master
+export VERTEX_LOCATION=europe-west1
+export OPENAI_KEY=$OPENROUTER_API_KEY
+export OPENAI_API_KEY=$OPENROUTER_API_KEY
+export OPENAI_BASE_URL=https://openrouter.ai/api/v1
+export AICOMMIT_MODEL=google/gemini-2.5-flash-lite
+export VISUAL=$EDITOR

@@ -6,7 +6,8 @@
         "openrouter": {
             "models": {
                 "anthropic/claude-haiku-4.5": {},
-                "minimax/minimax-m2:free": {}
+                "minimax/minimax-m2:free": {},
+                "google/gemini-2.5-flash-lite-preview-09-2025": {}
             }
         },
         "lmstudio": {
@@ -106,14 +107,43 @@
             "mode": "subagent",
             "description": "Test creation and test suite management"
         },
-        "debug-specialist": {
-            "mode": "subagent",
-            "description": "Specialized debugging with focused tools for issue isolation and resolution"
+        "fast": {
+            "mode": "primary",
+            "model": "groq/openai/gpt-oss-120b",
+            "description": "General but fast agent for very basic things."
         },
         "refactor": {
             "mode": "subagent",
             "description": "Code optimization and restructuring"
+        },
+        "ask": {
+            "mode": "primary",
+            "description": "Details/inquiry like debug (bash + read tools)"
+        },
+        "compaction": {
+            "mode": "primary",
+            "description": "Code compaction analysis (no tools)",
+            "model": "openrouter/google/gemini-2.5-flash-lite-preview-09-2025",
+            "tools": {
+                "bash": false,
+                "read": false,
+                "write": false,
+                "edit": false,
+                "glob": false,
+                "grep": false,
+                "list": false
+            }
+        },
+        "TestRunner": {
+            "mode": "subagent",
+            "description": "Run tests and return results",
+            "model": "groq/openai/gpt-oss-120b"
+        },
+        "TestCaseWriter": {
+            "mode": "subagent",
+            "description": "Write test cases",
+            "model": "openrouter/google/gemini-2.5-flash-lite-preview-09-2025"
         }
     },
-    "autoupdate": true,
+    "autoupdate": true
 }
