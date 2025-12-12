@@ -15,5 +15,5 @@ packages:
             - miniconda3
             # - antigravity-bin
             - google-cloud-cli
-            - dotool
-            - lazygit
+             - dotool
+             - lazygit

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "ref": {
+      "type": "remote",
+      "url": "https://api.ref.tools/mcp",
+      "headers": {
+        "x-ref-api-key": "{env:MCP_REF_API_KEY}"
+      },
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
+    },
+    "postgres": {
+      "type": "local",
+      "command": [
+        "uv",
+        "run",
+        "postgres-mcp"
+      ],
+      "environment": {
+        "DATABASE_URI": "postgres://postgres:postgres@localhost:5432/postgres"
+      },
+      "enabled": true
+    },
+    "jupyter": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "jupyter-mcp-server@latest"
+      ],
+      "environment": {
+        "JUPYTER_URL": "http://localhost:8888",
+        "JUPYTER_TOKEN": "MY_TOKEN",
+        "ALLOW_IMG_OUTPUT": "true"
+      },
+      "enabled": true
+    },
+    "github-pro": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:GH_TOKEN}"
+      },
+      "enabled": true
+    },
+    "github-perso": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:GH_TOKEN_PERSONAL}"
+      },
+      "enabled": true
+    }
+  }
+}

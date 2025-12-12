@@ -21,5 +21,6 @@ packages:
       - satococoa/tap/wtp
       - charmbracelet/tap/crush
       - kubelogin
+      - lazysql
     casks:
       - 1password-cli

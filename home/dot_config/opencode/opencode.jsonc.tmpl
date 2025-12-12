@@ -23,46 +23,76 @@
             }
         }
     },
-  	"mcp": {
-  		"Ref": {
-  		  "type": "remote",
-  		  "url": "https://api.ref.tools/mcp",
-  		  "headers": {
-  		    "x-ref-api-key": "{env:MCP_REF_API_KEY}"
-  		  }
-  		},
-  	  "playwright": {
-        "type": "local",
-        "command": [
-          "npx",
-          "@playwright/mcp@latest"
-        ],
-        "enabled": true
-      },
-  	  "postgres": {
-        "type": "local",
-        "command": [
-          "uv",
-          "run",
-          "postgres-mcp"
-        ],
-        "environment": {
-          "DATABASE_URI": "postgres://postgres:postgres@localhost:5432/postgres"
+   	"mcp": {
+   		"ref": {
+   		  "type": "remote",
+   		  "url": "https://api.ref.tools/mcp",
+   		  "headers": {
+   		    "x-ref-api-key": "{env:MCP_REF_API_KEY}"
+   		  },
+   		  "enabled": false
+   		},
+   	  "playwright": {
+         "type": "local",
+         "command": [
+           "npx",
+           "@playwright/mcp@latest"
+         ],
+         "enabled": false
+       },
+   	  "postgres": {
+         "type": "local",
+         "command": [
+           "uv",
+           "run",
+           "postgres-mcp"
+         ],
+         "environment": {
+           "DATABASE_URI": "postgres://postgres:postgres@localhost:5432/postgres"
+         },
+         "enabled": false
+       },
+    	  "serena": {
+          "type": "local",
+          "command": [
+            "uvx",
+            "--from",
+            "git+https://github.com/oraios/serena",
+            "serena",
+            "start-mcp-server"
+          ],
+          "enabled": false
         },
-        "enabled": true
-      },
-  	  "serena": {
-        "type": "local",
-        "command": [
-          "uvx",
-          "--from",
-          "git+https://github.com/oraios/serena",
-          "serena",
-          "start-mcp-server"
-        ],
-        "enabled": false
-      },
-    },
+    	  "jupyter": {
+           "type": "local",
+           "command": [
+             "uvx",
+             "jupyter-mcp-server@latest"
+           ],
+           "environment": {
+             "JUPYTER_URL": "http://localhost:8888",
+             "JUPYTER_TOKEN": "MY_TOKEN",
+             "ALLOW_IMG_OUTPUT": "true"
+           },
+           "enabled": false
+         },
+         "github-pro": {
+           "type": "remote",
+           "url": "https://api.githubcopilot.com/mcp",
+           "headers": {
+             "Authorization": "Bearer {env:GH_TOKEN}"
+           },
+           "enabled": false
+         },
+         "github-perso": {
+           "type": "remote",
+           "url": "https://api.githubcopilot.com/mcp",
+           "headers": {
+             "Authorization": "Bearer {env:GH_TOKEN_PERSONAL}"
+           },
+           "enabled": false
+         }
+       },
     "agent": {
         "build": {
             "mode": "primary",
