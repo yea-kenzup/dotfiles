@@ -13,7 +13,7 @@ packages:
             - lmstudio
             - cherry-studio
             - miniconda3
-            # - antigravity-bin
+            - antigravity-bin
             - google-cloud-cli
-             - dotool
-             - lazygit
+            - dotool
+            - lazygit

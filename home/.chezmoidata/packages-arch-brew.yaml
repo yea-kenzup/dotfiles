@@ -14,7 +14,7 @@ packages:
             - direnv
             - tmuxp
             - dhth/tap/act3
-             - daytonaio/cli/daytona
-             - derailed/k9s/k9s
-             - aicommit
-             - lazysql
+            - daytonaio/cli/daytona
+            - derailed/k9s/k9s
+            - aicommit
+            - lazysql

@@ -3,12 +3,11 @@ packages:
         pacman_sudo:
             - coreutils
             - lsof
+            - flatpak
         pacman:
             - base-devel
             - man-db
             - man-pages
-            # - pulseaudio 
-            # - pulseaudio-alsa
             - uv
             - docker
             - docker-buildx
@@ -42,4 +41,5 @@ packages:
             - dbeaver
             - webkit2gtk
             - alsa-support
-            # - pulseaudio-support
+            - azure-cli
+            - doctl
