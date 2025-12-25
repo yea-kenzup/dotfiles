@@ -10,10 +10,10 @@ Establish clear project management practices for organizing work into epics (lar
 
 **IMPORTANT:** When creating epics and stories, ALWAYS follow this sequence:
 
-### Step 1: Create the Epic FIRST
-1. Create the epic issue in GitHub
+### Step 1: Create Epic FIRST
+1. Create epic issue in GitHub
 2. Add `epic` label and other relevant labels
-3. Write clear business objective in the body
+3. Write clear business objective in body
 4. Include an empty Sub-Issues section
 
 **Example:**
@@ -27,12 +27,12 @@ customer/tenant users and administrative users.
 ```
 
 ### Step 2: Create ALL Stories as Sub-Issues
-**Before creating the epic, you MUST have the sub-issue IDs to link them properly.**
+**Before creating epic, you MUST have sub-issue IDs to link them properly.**
 
 The correct workflow is:
 1. **First:** Create all user stories as GitHub issues
-2. **Second:** Link each story to the epic using GitHub's sub-issue API
-3. **Third:** Add the epic and all stories to the project board
+2. **Second:** Link each story to epic using GitHub's sub-issue API
+3. **Third:** Add epic and all stories to project board
 
 **Why this order matters:**
 - GitHub's sub-issue relationship requires issue IDs
@@ -40,14 +40,14 @@ The correct workflow is:
 - The project board update happens AFTER issues are created and linked
 
 ### Step 3: Link Stories to Epic Using GitHub API
-After creating all stories, use the GitHub sub-issue API to link them:
+After creating all stories, use GitHub sub-issue API to link them:
 
 ```bash
 # For each story, link it to the parent epic
 github-perso_sub_issue_write(
   method: "add",
-  owner: "subagenta",
-  repo: "neptune", 
+  owner: "<your-org>",
+  repo: "<your-repo>",
   issue_number: 103,  # Epic number
   sub_issue_id: 3761837331  # Story's internal ID (from creation response)
 )
@@ -85,14 +85,31 @@ An **epic** is a large, strategic initiative that encompasses multiple related s
 - Has a clear business objective
 - Tracked as a parent issue with sub-issues
 
-**Epic Title Format:**
-- Use `[EPIC]` prefix to make it easily identifiable
-- Example: `[EPIC] Authentication System`
+**Epic Title Format: Use "EPIC" Prefix (Uppercase, No Brackets)**
+- Use `EPIC]` prefix to make it easily identifiable
+- Example: `EPIC] Authentication System`
+
+**Epic Title Format: Use "EPIC" Prefix (Uppercase, No Brackets)**
+- Use `EPIC]` prefix to make it easily identifiable
+- Example: `EPIC] Authentication System`
+
+**Epic Title Format: Use "EPIC" Prefix (Uppercase, No Brackets)**
+- Use `EPIC]` prefix to make it easily identifiable
+- Example: `EPIC] Authentication System`
+
+**Epic Title Format: Use "EPIC" Prefix (Uppercase, No Brackets)**
+- Use `EPIC]` prefix to make it easily identifiable
+- Example: `EPIC] Authentication System`
+
+**Epic Title Format: Use "EPIC" Prefix (Uppercase, No Brackets)**
+- Use `EPIC]` prefix to make it easily identifiable
+- Example: `EPIC] Authentication System`
+
 
 **Epic Structure:**
 ```markdown
 ## Overview
-Brief description of the epic's business objective and scope.
+Brief description of epic's business objective and scope.
 
 ## Business Goals
 - Goal 1
@@ -205,19 +222,19 @@ As a [user type], I want to [action] so that [benefit].
 
 **Before creating any GitHub issues:**
 
-1. **Analyze the Requirements**
-   - Understand the full scope of the epic
+1. **Analyze Requirements**
+   - Understand full scope of epic
    - Identify major components (backend, frontend, database, security)
    - Break down into logical user stories
    - Consider dependencies between stories
 
-2. **Design the Story Breakdown**
+2. **Design Story Breakdown**
    - Group related functionality into stories
    - Ensure each story is independently deliverable
    - Typical epic has 5-15 stories
    - Each story should be 1-5 days of work
 
-3. **Plan the Technical Architecture**
+3. **Plan Technical Architecture**
    - Database schema changes
    - API endpoints needed
    - Frontend components
@@ -232,9 +249,9 @@ As a [user type], I want to [action] so that [benefit].
 ```bash
 github-perso_issue_write(
   method: "create",
-  owner: "<your-org>",
+  title: "EPIC]"
   repo: "<your-repo>",
-  title: "[EPIC] Authentication System",
+  title: "EPIC] Authentication System",
   labels: ["epic", "authentication", "high-priority", "security"],
   body: "Comprehensive epic description with all sections..."
 )
@@ -289,11 +306,10 @@ github-perso_sub_issue_write(
 
 #### Step 4: Add to Project Board
 ```bash
+# Use the project-updater agent
 task(
   subagent_type: "project-updater",
-  description: "Add auth epic to project",
-  prompt: "Add epic #103 and all sub-issues (#104-#115) to the Technical Project board.
-  Set appropriate status (Backlog/Todo) and ensure proper parent-child relationships."
+  prompt: "Add epic #103 and stories #104-#115 to Technical Project board"
 )
 ```
 
@@ -385,7 +401,6 @@ Include:
     "full_name": "John Doe"
   }
 }
-```
 ```
 
 ### Test Cases
@@ -483,7 +498,7 @@ Include:
 
 ### Pitfall 3: Missing Internal IDs
 **Problem:** Can't link stories because internal IDs weren't saved
-**Solution:** Save the `id` field from each story creation response
+**Solution:** Save `id` field from each story creation response
 
 ### Pitfall 4: Not Using Sub-Issue API
 **Problem:** Manually listing stories in epic body doesn't create GitHub relationships
@@ -532,9 +547,9 @@ Include:
 ## Example Epic Creation Script
 
 ```markdown
-# 1. Create Epic
+  title: "EPIC]"
 epic = github-perso_issue_write(
-  title: "[EPIC] Authentication System",
+  title: "EPIC] Authentication System",
   labels: ["epic", "authentication", "security"],
   body: "Full epic description..."
 )
@@ -562,7 +577,9 @@ story_ids.append(story2.id)  # Save: 3761837611
 for story_id in story_ids:
   github-perso_sub_issue_write(
     method: "add",
-    issue_number: 103,
+    owner: "<your-org>",
+    repo: "<your-repo>",
+    issue_number: 103,  # Epic number
     sub_issue_id: story_id
   )
 
