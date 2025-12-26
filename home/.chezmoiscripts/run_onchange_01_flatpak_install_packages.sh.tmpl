@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "=============================================="
+echo "   CHEZMOI FLATPAK PACKAGE INSTALLATION"
+echo "=============================================="
+echo ""
+
+{{ if eq .chezmoi.os "linux" -}}
+{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "ubuntu") -}}
+{{ range .packages.flatpak -}}
+echo "--- Installing: {{ . }} ---"
+flatpak install -y --noninteractive flathub {{ . | quote }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
